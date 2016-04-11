@@ -9,7 +9,8 @@ import (
 )
 
 type Page struct {
-    Test string
+    Categories []string
+    Files []string
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
@@ -20,7 +21,10 @@ func index(w http.ResponseWriter, r *http.Request) {
         log.Fatal(err)
     }
 
-    p := Page{Test: "template test"}
+    p := Page{
+        Categories: []string{"Category", "Category", "Category", "Category", "Category", "Category", "Category", "Category", "Category", "Category", "Category"},
+        Files: []string{"File", "File", "File", "File", "File"},
+    }
     t.Execute(w, p)
 }
 
