@@ -7,8 +7,8 @@ import (
     "os"
     "io"
     "fmt"
-    // "database/sql"
-	// _ "github.com/lib/pq"
+    "database/sql"
+	_ "github.com/lib/pq"
 )
 
 type Category struct {
@@ -127,10 +127,13 @@ func upload(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-    // _, err := sql.Open("postgres", "user=root dbname=flagship")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
+    db, err := sql.Open("postgres", "postgres://vagrant:vagrant@localhost/vagrant")
+	if err != nil {
+		log.Fatal(err)
+	}
+    if err = db.Ping(); err != nil {
+        log.Fatal(err)
+    }
 
     http.HandleFunc("/", index)
     http.HandleFunc("/upload", upload)
