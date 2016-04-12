@@ -94,6 +94,7 @@ func upload(w http.ResponseWriter, r *http.Request) {
         err := r.ParseMultipartForm(10000) // 10 MB in memory
         if err != nil {
             http.Error(w, err.Error(), http.StatusInternalServerError)
+            return
         }
         files := r.MultipartForm.File["files"]
         if len(files) == 0 {
@@ -105,6 +106,7 @@ func upload(w http.ResponseWriter, r *http.Request) {
             defer file.Close()
             if err != nil {
                 http.Error(w, err.Error(), http.StatusInternalServerError)
+                return
             }
 
             // create uploaded file
@@ -112,11 +114,13 @@ func upload(w http.ResponseWriter, r *http.Request) {
             defer dest.Close()
             if err != nil {
                 http.Error(w, err.Error(), http.StatusInternalServerError)
+                return
             }
 
             // copy to uploaded file
             if _, err := io.Copy(dest, file); err != nil {
                 http.Error(w, err.Error(), http.StatusInternalServerError)
+                return
             }
         }
         http.Redirect(w, r, "/", http.StatusFound)
