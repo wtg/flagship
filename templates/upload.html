@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Test</title>
+  <link href="../static/bootswatch-flatly.min.css" rel="stylesheet" type="text/css">
+  <link href="../static/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Flagship Docs</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Sign in</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid main full-height">
+    <div class="row full-height">
+      <div class="col-md-4 col-lg-2 sidebar">
+        {{range .Categories}}
+        <a href="#">{{.Name}}</a>
+        {{end}}
+      </div>
+      <div class="col-md-4">
+        <h1 class="heading">Upload Document</h1>
+        <form class="form" style="margin-left: 24px">
+          <div class="form-group">
+            <label for="name">Title</label>
+            <input type="text" class="form-control" name="name" id="name" />
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" name="description" id="description"></textarea>
+          </div>
+          <hr />
+          <div class="form-group">
+            <input type="checkbox" name="private" id="private" />
+            <label for="private">Make Private</label>
+            <p class="help-block">Checking this will hide the document from non-group members.</p>
+          </div>
+          <div class="form-group">
+            <input type="checkbox" name="everyone" id="everyone" />
+            <label for="everyone">Everyone Can Edit</label>
+            <p class="help-block">Checking this box allows non-group members to revise this document.</p>
+          </div>
+          <hr />
+          <div class="form-group">
+            <label for="file">File</label>
+            <input type="file" name="file" id="file" />
+          </div>
+          <hr />
+          <button type="submit" class="btn btn-primary btn-sm">Upload</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
